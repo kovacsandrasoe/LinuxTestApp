@@ -40,7 +40,9 @@ namespace LinuxTestApp.Controllers
             };
             p.Start();
             p.WaitForExit();
-            return View(nameof(IP), p.StandardOutput.ReadToEnd());
+            string output = p.StandardOutput.ReadToEnd();
+            output = output.Replace("\r\n", "#");
+            return View(nameof(IP), output.Split('#'));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

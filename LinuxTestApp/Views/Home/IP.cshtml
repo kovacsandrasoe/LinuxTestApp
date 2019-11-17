@@ -1,8 +1,11 @@
-﻿@model string
+﻿@model string[]
 @{
     ViewData["Title"] = "IP";
 }
 
 <h1>IP</h1>
-<p>@Model</p>
+@foreach (var item in @Model)
+{
+    <span>@item</span><br/>
+}
 
