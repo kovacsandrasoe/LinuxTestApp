@@ -28,6 +28,21 @@ namespace LinuxTestApp.Controllers
             return View();
         }
 
+        public IActionResult IP()
+        {
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo()
+            {
+                FileName = "/var/www/script.sh",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            };
+            p.Start();
+            p.WaitForExit();
+            return View(nameof(IP), p.StandardOutput.ReadToEnd());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
